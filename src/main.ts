@@ -8,6 +8,8 @@ import './styles/main.css'
 import 'uno.css'
 
 import './interview/prototype.js'
+import './interview/scope.js'
+import './interview/bind.js'
 
 const app = createApp(App)
 const router = createRouter({
