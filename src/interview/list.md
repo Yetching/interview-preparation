@@ -54,7 +54,7 @@
     ```
 10. typeof和instanceof
     - typeof用于判断基本类型和函数，引用类型只能获得object
-    - instanceof是用于判断实例的原型链是否有构造函数的原型
+    - instanceof是用于判断实例的原型链是否有构造函数的prototype
     - 特殊的
       ```javascript 
       function Foo() {
