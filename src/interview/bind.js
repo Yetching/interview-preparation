@@ -6,17 +6,21 @@
 Function.prototype.bind2 = function(context, ...rest) {
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this
-  const args = Array.prototype.slice.call(rest)
+  const args = rest
 
   return function() {
+    // const bindArgs = Array.prototype.slice.call(arguments)
     // eslint-disable-next-line prefer-rest-params
-    const bindArgs = Array.prototype.slice.call(arguments)
+    const bindArgs = [...arguments]
     return self.apply(context, args.concat(bindArgs))
   }
 }
 
 const foo = {
   value: 1,
+  bar() {
+    console.log('foo.bar')
+  },
 }
 function bar(name, value) {
   console.log(this)
@@ -31,10 +35,10 @@ console.log(bar.bind2(foo, 'vue')('best'))
 Function.prototype.call2 = function(context, ...rest) {
   // undefined和null的情况下非严格模式指向window
   context = context || window
-  context.func = this
+  context.bar = this
   const args = rest
-  const result = context.func(...args)
-  delete context.func
+  const result = context.bar(...args)
+  delete context.bar
   return result
 }
 
@@ -43,9 +47,11 @@ console.log(bar.call2(foo, 'vue', 'best'))
 // todo apply实现的功能点： 1.改变this指向并执行 2.传入参数数组
 Function.prototype.apply2 = function(context, arr) {
   context = context || window
-  context.func = this
-  const result = context.func(...arr)
-  delete context.func
+  // 使用symbol防止对象有重名属性，delete时删掉了
+  const fn = Symbol('func')
+  context[fn] = this
+  const result = context[fn](...arr)
+  delete context[fn]
   return result
 }
 console.log(bar.apply2(foo, ['vue', 'best']))
