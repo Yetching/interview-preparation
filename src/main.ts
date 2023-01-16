@@ -7,9 +7,11 @@ import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import 'uno.css'
 
-import './interview/prototype.js'
-import './interview/scope.js'
-import './interview/bind.js'
+// import './interview/prototype.js'
+// import './interview/scope.js'
+// import './interview/bind.js'
+
+import './design/index'
 
 const app = createApp(App)
 const router = createRouter({
@@ -18,4 +20,3 @@ const router = createRouter({
 })
 app.use(router)
 app.mount('#app')
-console.log(app)
