@@ -1,8 +1,12 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 
-import './factory'
+// import './factory'
 
-import './abstract'
+// import './abstract'
 
-import './singleleton'
+// import './singleleton'
+
+// import './proto'
+
+import './decorator'
